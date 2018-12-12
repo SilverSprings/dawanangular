@@ -1,0 +1,139 @@
+<header>
+  <h2>Directives</h2>
+</header>
+
+<ul>
+  <li>Les directives structurelles : Elles vont pouvoir modifier le DOM, en ajoutant, enlevant, remplacent des éléments
+    du Dom
+  </li>
+  <li>Les directives attributs : Elles ont pour but d emodifier l'apparence ou le comportement d'une élément
+  </li>
+</ul>
+
+<h3>ngIf</h3>
+
+<div class="my-3">
+  <button class="btn  btn-outline-primary btn-sm" (click)="isVisible = !isVisible">
+    {{ isVisible? 'Hide': 'Show'}}
+  </button>
+</div>
+
+<hr />
+
+<p *ngIf="isVisible">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut culpa, cumque delectus dignissimos dolores
+  esse eveniet expedita facere fugiat, labore nam nemo nobis placeat quidem quod sed similique tempore?
+</p>
+
+<hr />
+
+<p *ngIf="isVisible ; else elseBlock">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aut culpa, cumque delectus dignissimos dolores
+  esse eveniet expedita facere fugiat, labore nam nemo nobis placeat quidem quod sed similique tempore?
+</p>
+<ng-template #elseBlock>
+  <p> Lorem ipsum dolor sit amet, [...]  sed similique tempore? </p>
+</ng-template>
+
+<hr />
+
+<p *ngIf="isVisible ; then thenBlock else otherElseBlock"></p>
+<ng-template #thenBlock>
+  <p> thenBlock : Lorem ipsum dolor sit amet, [...]  sed similique tempore? </p>
+</ng-template>
+<ng-template #otherElseBlock>
+  <p> otherElseBlock : Lorem ipsum dolor sit amet, [...]  sed similique tempore? </p>
+</ng-template>
+
+<hr />
+
+<h3>ngFor</h3>
+
+<ul>
+  <li *ngFor="let value of ['a', 'b', 'c', 'd', 'e']; index as i; even as paire; odd as impaire; first as prem; last as der">
+    <ul>
+      <li class="list-inline-item">index = {{ i }}</li>
+      <li class="list-inline-item">value = {{ value }}</li>
+      <li class="list-inline-item">Paire = {{ paire }}</li>
+      <li class="list-inline-item">Impaire = {{ impaire }}</li>
+      <li class="list-inline-item">Dernier = {{ der }}</li>
+      <li class="list-inline-item">Premier = {{ prem }}</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>ngSwitch</h3>
+
+<div class="btn-group btn-group-sm my-2">
+  <button class="btn btn-outline-primary" (click)=" mode = 'vertical'">Vertical</button>
+  <button class="btn btn-outline-primary" (click)=" mode = 'horizontal'">Horizontal</button>
+</div>
+
+<div [ngSwitch]="mode">
+
+  <!-- ul.list-unstyled>li{Element $}*5             C'est la magie EMMET !!!-->
+  <ul class="list-unstyled" *ngSwitchCase=" 'vertical' ">
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+    <li>Element 4</li>
+    <li>Element 5</li>
+  </ul>
+
+  <!-- ul.list-unstyled>li.list-inline-item{Element $}*5             C'est la magie EMMET !!!-->
+  <ul class="list-unstyled" *ngSwitchCase=" 'horizontal' ">
+    <li class="list-inline-item">Element 1</li>
+    <li class="list-inline-item">Element 2</li>
+    <li class="list-inline-item">Element 3</li>
+    <li class="list-inline-item">Element 4</li>
+    <li class="list-inline-item">Element 5</li>
+  </ul>
+
+  <p *ngSwitchCase class="text-black-50"> Aucune donnée enregistrée</p>
+</div>
+
+<hr />
+
+<h3>ngClass</h3>
+
+<button class="my-3  btn-outline-primary" (click)="hasClass = !hasClass"> Toggle Class</button>
+
+<p class="lead font" [ngClass]="{ 'text-success': hasClass, 'font-italic':hasClass, 'text-danger': !hasClass,
+                             'font-weight-bold': !hasClass }">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam culpa eveniet explicabo facere
+  fugit, hic id magni maxime nemo nulla obcaecati quaerat quasi sit tenetur vitae voluptas voluptatibus? Adipisci?
+</p>
+
+<h3>ngStyle</h3>
+
+<div class="btn-group my-3">
+  <button class="btn btn-outline-primary" (click)="progress = '0%' ">0%</button>
+  <button class="btn btn-outline-primary" (click)="progress = '25%' ">25%</button>
+  <button class="btn btn-outline-primary" (click)="progress = '50%' ">50%</button>
+  <button class="btn btn-outline-primary" (click)="progress = '75%' ">75%</button>
+  <button class="btn btn-outline-primary" (click)="progress = '100%' ">100%</button>
+</div>
+
+<hr />
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" [ngStyle]="{width: progress}"></div>
+</div>
+
+<hr />
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="progress" [attr.aria-valuenow]="progress"></div>
+</div>
+
+<hr />
+
+
+<div *ngIf=" progress === '50%'">
+  <button [style.borderWidth]="'thick'" [ngStyle]="{borderColor: 'green', backgroundColor: 'red'}"> PoPo </button>
+</div>
+
+<div *ngIf=" progress !== '50%'">
+  <button [style.borderWidth]="'thin'" [ngStyle]="{borderColor: 'blue', backgroundColor: 'purple'}"> PoPo </button>
+</div>
+<!--  -->

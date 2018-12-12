@@ -1,0 +1,48 @@
+<header>
+  <h2>SignUp <small>Reactive form</small> </h2>
+  <!-- On a  du dans app.module.ts rajouter ReactiveFormsModule -->
+</header>
+
+<form [formGroup]="form" (submit)="signup()">
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Email :</label>
+    <div class="col-10">
+      <input type="text" class="form-control" placeholder="Email..." formControlName="email"/>
+      <p *ngIf="controlEmail(); let message">{{ message }}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password :</label>
+    <div class="col-10">
+      <input type="password" class="form-control" placeholder="Password..." formControlName="password"/>
+      <p class="alert alert-warning" *ngIf="controlPassword()">{{controlPassword()}}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Confirm :</label>
+    <div class="col-10">
+      <input type="password" class="form-control" placeholder="Confirm password..." formControlName="confirm"/>
+      <p *ngIf="controlConfirm()">{{controlConfirm()}}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-10 offset-2">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="CGU" formControlName="term"/>
+        <label class="form-check-label" for="CGU"> Conditions générales d'utilisation</label>
+        <p *ngIf="controlTerm()">{{controlTerm()}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="offset-2 col-10">
+      <input type="submit" name="send" class="btn btn-outline-primary" value="S'inscrire" />
+    </div>
+  </div>
+
+</form>

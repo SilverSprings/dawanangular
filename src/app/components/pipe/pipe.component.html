@@ -1,0 +1,78 @@
+<header>
+  <h2>Pipes</h2>
+</header>
+
+<p>Majuscule {{'je suis une chaine de caractere minuscule' | uppercase}}</p>
+<p>Minuscule {{'JE SUIS UNE CHAINE DE CARACTERE MINUSCULE' | lowercase}}</p>
+<p>Title {{'je suis un titre de page' | titlecase}}</p>
+
+<p>Pi   {{'3.141592' | number:'1.1-5'}}</p> <!-- Au moins 1 chiffre avant la virgule et précision de 1 à 5 chiffres après la virgule -->
+<p>1/3  {{1/3 | number:'1.3-5'}} </p> <!-- Au moins 1 chiffre avant la virgule et précision de 3 à 5 chiffres après la virgule -->
+<p>1/16 {{1/16 | number:'1.3-5'}} </p> <!-- Au moins 1 chiffre avant la virgule et précision de 3 à 5 chiffres après la virgule -->
+
+<p>Pourcentage {{1/3 |  percent:'2.2'}}</p> <!-- Rajoute le signe % de pourcentage -->
+<p> Prix (code): {{ 9999.99 | currency:deviseCAD:'code':'1.2'}} </p> <!-- devise, affichage format, nombre de chiffres significatifs -->
+<p> Prix (symbol): {{ 9999.99 | currency:'CAD':'symbol':'1.2'}} </p>
+<p> Prix (symbol-narrow): {{ 9999.99 | currency:'CAD':'symbol-narrow':'1.2'}} </p>
+
+<p>Date: {{ date | date:'dd/MM/yyyy'}}</p>
+<p>Date: {{ date | date:'full'}}</p>
+<p>Date: {{ date | date:'fullDate'}}</p>
+
+<p>Object : {{object | json}}</p>
+<p>Object : {{object}}</p>
+
+<ul>
+  <li *ngFor="let item of object | keyvalue"> {{item.key | titlecase }}: {{ item.value }}</li>
+</ul>
+
+<!--ul>
+  <li *ngFor="let name of users | slice:1:6"> {{ name }}</li>
+</ul-->
+<hr />
+
+<p>Page {{NumPage}}/{{MaxPage | number:'1.0'}} </p>
+
+<p> Nombre de users affichés</p>
+<select [(ngModel)]="NbDisp" (ngModelChange)="getNbDisp()">
+  <option *ngFor="let i of options" [value]="i">{{ i }}</option>
+</select>
+
+
+<ul>
+  <li *ngFor="let name of users | slice:CurrentUser:CurrentUser+NbDisp"> {{ name }}</li>
+</ul>
+
+<div class="btn-group">
+  <button class="btn btn-outline-primary" (click)="fctPrev()">Prev </button>
+  <button class="btn btn-outline-primary" (click)="fctNext()">Next </button>
+</div>
+
+
+<!--p>Pas de Safe Operator, user : {{ user.nom }} </p-->
+<p>Avec   Safe Operator, user : {{ user?.nom }} </p>
+<p>Avec   Safe Operator, user : {{ user?.address?.zip }} </p>
+
+<hr />
+<hr />
+<p> SOLUTION PROF</p>
+<hr />
+<hr />
+
+<p>Page {{index}}/{{pages}} </p>
+
+<p> Nombre de users affichés</p>
+<select [(ngModel)]="nbElt" (ngModelChange)="changeNbElt()">
+  <option *ngFor="let i of options" [value]="i">{{ i }}</option>
+</select>
+
+
+<ul>
+  <li *ngFor="let name of users | slice:start:end"> {{ name }}</li>
+</ul>
+
+<div class="btn-group">
+  <button class="btn btn-outline-primary" (click)="prev()">&lt; &lt; Prev </button>
+  <button class="btn btn-outline-primary" (click)="next()">Next &gt; &gt;</button>
+</div>
+

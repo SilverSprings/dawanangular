@@ -1,0 +1,30 @@
+<hr />
+<header>
+  <h2>Pipe Perso Perso</h2>
+</header>
+
+<hr />
+
+<h3> Power Pipe </h3>
+<p> 2^8 = {{ 2 | power}}</p>
+
+<p> 2^8 = {{ 2 | power:8}}</p>
+
+<p> (2^8)*10 = {{ 2 | power:8:10}}</p>
+
+<hr />
+
+<h3> Pipelindrome </h3>
+
+<input type="text" [(ngModel)]="textOrigin">
+<!-- (keyup)="recordLetter() -->
+<p>Texte d'origine : {{textOrigin}}</p>
+<p>Texte inversé   : {{textOrigin | pipelindrome}}</p>
+
+<hr />
+<h3>Pipelindrome SOLUTION PROF</h3>
+<hr />
+
+<input type="text" #input class="form-control" placeholder="Entrer Un palindrome" (keyup)="0">
+
+<p class="form-control-plaintext">Palindrome: {{ input.value | pipelindrome}} </p>

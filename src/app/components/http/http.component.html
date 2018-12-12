@@ -1,0 +1,26 @@
+<header>
+  <h2>Http Client</h2>
+</header>
+
+<button class="btn btn-outline-primary my-2" (click)="loadUser()">Récupérer les utilisateurs</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone}}</td>
+      <td>{{ user.getAddress()}}</td>
+    </tr>
+  </tbody>
+</table>

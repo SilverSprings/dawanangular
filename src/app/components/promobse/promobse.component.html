@@ -1,0 +1,54 @@
+<header>
+  <h2>Promobse</h2>
+</header>
+
+<section class="row">
+  <article class="col">
+    <h3>Promise</h3>
+
+    <button class="btn btn-outline-primary" (click)="getAsyncNumber()">Synchroniser</button>
+
+    <p class="my-2 text-info">{{ wait }}</p>
+    <div *ngIf="wait !=null" class="progress">
+      <div class="progress-bar" role="progressbar" [ngStyle]="{width: progress}"></div>
+    </div>
+    <div class="alert alert-warning" *ngIf="error"> {{ error }}</div>
+
+    <ul class="list-unstyled">
+      <p *ngIf="duration !=null">Temps de réponse : {{duration}}</p>
+      <li *ngFor="let number of numbers"> {{ number }} </li>
+    </ul>
+
+  </article>
+
+  <hr/>
+
+  <article class="col">
+    <h3>Observer</h3>
+
+    <button class="btn btn-outline-primary" (click)="getMultiNumber()">Synchroniser</button>
+
+    <div class="alert alert-warning" *ngIf="message"> {{ message }}</div>
+
+    <ul class="list-unstyled">
+      <li *ngFor="let number of obsNumber"> {{ number }} </li>
+    </ul>
+
+  </article>
+
+  <hr/>
+
+  <article class="col">
+    <h3>Async/Await</h3>
+    <button class="btn btn-outline-primary" (click)="getAsyncFunctionOK()"> AsyncOK </button>
+    <button class="btn btn-outline-danger" (click)="getAsyncFunctionKO()"> AsyncKO </button>
+
+    <button class="btn btn-outline-danger" (click)="somme()"> Somme </button>
+    <p> Time elapsed : {{timeElapsed}}</p>
+
+    <p> {{ num1}} + {{ num2 }} = {{ resultat }}</p>
+
+
+  </article>
+
+</section>

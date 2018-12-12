@@ -1,0 +1,53 @@
+<header>
+  <h2>To do List</h2>
+</header>
+
+
+
+
+<!-- NE PAS FAIRE - NE PAS UTILISER LES TEMPLATES VARIABLES - PAS UTILISATION COMME CAdiv class="input-group">
+  <input type="text" placeholder="Entrer votre tâche (avec template variable)" class="form-control" #inputTache />
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" (click)="ajoutTache(inputTache.value)">
+      Ajout tâche 1
+    </button>
+  </div>
+</div-->
+
+<!-- VERSION LAM div>
+  <ul class="list-unstyled">
+    <li *ngFor="let tache of taches; index as i">
+      <button class="btn btn-outline-primary" (click)="SuppTache(i)">
+        {{i + 1}} : {{ tache }}
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div class="input-group">
+  <input type="text" placeholder="Entrer votre tâche (avec 2 way data binding)" class="form-control" [(ngModel)]="inputTache2"/>
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" (click)="ajoutTache()">
+      Ajout tâche 2
+    </button>
+  </div>
+</div-->
+
+<div class = "row">
+  <div class="col-3">
+    <div class="list-group">
+      <button class="list-group-item list-group-item-action" *ngFor="let task of taches; index as i" (click)="SuppTache(i)" >
+      {{task}}
+      </button>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="input-group">
+      <input type="text" placeholder="Entrer votre tâche (avec 2 way data binding)" class="form-control" [(ngModel)]="inputTache2" (keyup.enter)="ajoutTache()"/>
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" (click)="ajoutTache()"> Ajout tâche </button>
+      </div>
+    </div>
+  </div>
+</div>
+

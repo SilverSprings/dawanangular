@@ -1,0 +1,38 @@
+<header>
+  <h2>Parameters</h2>
+</header>
+
+<nav>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <!-- directive sans crochet : chaînes de caracteres-->
+      <a class="nav-link" routerLink="/parameters/jean">Jean</a>
+    </li>
+    <li class="nav-item">
+      <!-- directive avec crochet : tableau -->
+      <a class="nav-link" [routerLink]="['/parameters', 'sophie']">Sophie</a>
+    </li>
+    <li class="nav-item">
+      <!-- ?LastName -->
+      <a class="nav-link" [routerLink]="['/parameters?lastName=dupont']">Test URL avec ?</a>
+    </li>
+  </ul>
+</nav>
+
+<p *ngIf="lastName"  >
+  Nom de famille : {{ lastName }}
+</p>
+
+<p *ngIf="!name; else information"  >
+  pour connaitre la relation de Jean et Sophie sur leur nom !
+</p>
+
+<ng-template #information>
+
+  <button class="btn btn-outline-secondary" (click)="goBack()"> &lt;&lt; Retour </button>
+
+  <div [ngSwitch]="name">
+    <p *ngSwitchCase=" 'jean' ">Jean est un collègue de travail de Sophie</p>
+    <p *ngSwitchCase=" 'sophie' ">Sophie est amoureuse de Jean</p>
+  </div>
+</ng-template>

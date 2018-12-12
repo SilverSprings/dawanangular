@@ -1,0 +1,46 @@
+<header>
+  <h2>Services</h2>
+</header>
+
+<form [formGroup]="form" (submit)="addProduct(); resetForm()">
+  <table class="table">
+    <head>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </head>
+    <tbody>
+    <tr *ngFor="let product of products; index as index">
+      <td>{{index+1}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price | currency:'USD':'symbol-narrow'}}</td>
+      <td>
+        <div class="btn-group">
+          <button type="button" class="btn-outline-primary"(click)="updProduct(product, index)" >Modifier</button>
+          <button type="button" class="btn-outline-danger" (click)="productService.delete(index)" >Supprimer</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td></td>
+      <td>
+        <input type="text" class="form-control" placeholder="Name..."  formControlName="name">
+      </td>
+      <td>
+        <input type="text" class="form-control" placeholder="Price..."  formControlName="price">
+      </td>
+      <td>
+        <div class="btn-group">
+          <input type="submit" class="btn-outline-secondary" [value]="btn" [disabled]="form.invalid"/>
+          <button type="button" class="btn-outline-secondary" *ngIf="selected" (click)="resetForm()">Annuler</button>
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</form>

@@ -1,0 +1,47 @@
+<header>
+  <h2>Formulaire <small>Template Driven Form</small></h2>
+</header>
+
+<section class="row">
+  <aside class="col-4">
+    <div class="list-group">
+      <button class="list-group-item" *ngFor="let product of products; index as i" (click)="productToFillForm(product,i )">
+        {{product.name}} @ {{product.price |currency:'EUR':'symbol-narrow'}}
+      </button>
+    </div>
+  </aside>
+  <article class="col-8">
+    <!--form>div.form-group.row*3>label.col-2.col-form-label+div.col-10>input.form-control-->
+
+           <!-- C'est l'événement submit du formulaire qui va déclencher la méthode-->
+    <form (submit)="(spyForm.valid)? addProduct():0;spyForm.reset()" #spyForm="ngForm">
+                                  <!-- Dans la var de template je mets ngForm et je vais recevoir l'état de fomn formulaire
+                                       Si un des éléments enfants est KO, alors mon formulaire est KO -->
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Name</label>
+        <div class="col-10">
+          <input type="text" name="name" class="form-control" placeholder="Name..." [(ngModel)]="product.name" required
+           #spyName="ngModel"/> <!-- Ici, on va récupérer la classe ngModel au lieu de la balise via la variable de template-->
+          <p *ngIf="spyName.touched && spyName.getError('required')">Name required</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Price</label>
+        <div class="col-10">
+          <input type="text" name="price" class="form-control" placeholder="Prix..." [(ngModel)]="product.price" required
+          #spyPrice="ngModel" pattern="[0-9]+(\.[0-9]+)?"/>
+          <p *ngIf="spyPrice.touched && spyPrice.getError('required')">Price required</p>
+          <p *ngIf="spyPrice.touched && spyPrice.getError('pattern')">Invalid format</p>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="offset-2 col-10">
+          <input type="submit" name="send" class="btn btn-outline-primary" [value]="btn" [disabled]="spyForm.invalid"/>
+        </div>
+      </div>
+
+    </form>
+  </article>
+</section>

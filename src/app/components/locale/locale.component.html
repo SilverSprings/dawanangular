@@ -1,0 +1,25 @@
+<!-- où dois-je mettre la devise, le format des dates, etc. spécifique à mon pays-->
+<!-- Par défaut, Angular ne charge pas les langues inutiles, que l'anglais au début. Voir app.module.td.
+     Mais fr par défaut  ?-->
+<header>
+  <h2>Les locales</h2>
+</header>
+
+<div class="btn-group btn-group-sm mb-3">
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : lang == 'en'}" (click)="selectedLang('en')">English</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : lang == 'fr'}" (click)="selectedLang('fr')">Français</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : lang == 'de'}" (click)="selectedLang('de')">Deutsch</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : lang == 'jp'}" (click)="selectedLang('ja')">Japan</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : lang == 'vn'}" (click)="selectedLang('vi')">Vietnam</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : lang == 'ar'}" (click)="selectedLang('ar')">Arabe</button>
+</div>
+<div class="w-100"></div>
+<div class="btn-group btn-group-sm mb-3">
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : devi == 'EUR'}" (click)="selectedDevi('EUR')">Euro</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : devi == 'JPY'}" (click)="selectedDevi('JPY')">Yen</button>
+  <button class="btn btn-outline-dark" [ngClass]="{'active' : devi == 'USD'}" (click)="selectedDevi('USD')">Dollars</button>
+</div>
+<!-- Possibilité dans la date de gérer le timezone {{ date | date:'full':'+0100':lang}}-->
+<p> {{ date | date:'full':'':lang | titlecase}} </p>
+
+<p> {{ 9999.1234 | currency:devi:'symbol-narrow':'':lang}}</p>
